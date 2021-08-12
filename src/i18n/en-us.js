@@ -23,7 +23,7 @@ export default {
         next: "NEXT",
         openWallet: "OPEN WALLET",
         receive: "RECEIVE",
-        registerServiceNode: "REGISTER SERVICE NODE",
+        registerMasternode: "REGISTER MASTERNODE",
         rescan: "RESCAN",
         restoreWallet: "RESTORE WALLET",
         save: "SAVE",
@@ -32,11 +32,11 @@ export default {
         selectWalletFile: "SELECT WALLET FILE",
         send: "SEND",
         sendCoins: "SEND COINS",
-        serviceNode: "SERVICE NODE",
+        masterNode: "MASTERNODE",
         settings: "SETTINGS",
         showQRCode: "SHOW QR CODE",
         showTxDetails: "SHOW TX DETAILS",
-        stake: "STAKE",
+        supernode: "MNODE",
         sweepAll: "SWEEP ALL",
         unlock: "UNLOCK",
         viewOnExplorer: "VIEW ON EXPLORER"
@@ -93,9 +93,9 @@ export default {
             title: "Password",
             message: "Enter wallet password to continue."
         },
-        registerServiceNode: {
-            title: "Register service node",
-            message: "Do you want to register the service node?",
+        registerMasternode: {
+            title: "Register masternode",
+            message: "Do you want to register the masternode?",
             ok: "REGISTER"
         },
         rescan: {
@@ -113,10 +113,10 @@ export default {
             message: "Do you want to view your private keys?",
             ok: "SHOW"
         },
-        stake: {
-            title: "Stake",
-            message: "Do you want to stake?",
-            ok: "STAKE"
+        supernode: {
+            title: "Supernode",
+            message: "Do you want to supernode?",
+            ok: "MNODE"
         },
         sweepAll: {
             title: "Sweep all",
@@ -125,7 +125,7 @@ export default {
         },
         sweepAllWarning: {
             title: "Sweep all warning",
-            message: "You are about to combine all of your unspent funds by sending a transaction to yourself, your wallet may show a balance of 0 temporarily, after 10 blocks your funds will unlock and you may stake normally.",
+            message: "You are about to combine all of your unspent funds by sending a transaction to yourself, your wallet may show a balance of 0 temporarily, after 10 blocks your funds will unlock and you may supernode normally.",
             ok: "CONTINUE"
         },
         switchWallet: {
@@ -146,15 +146,15 @@ export default {
             title: "Confirm unlock",
             ok: "UNLOCK"
         },
-        unlockServiceNode: {
-            title: "Unlock service node",
+        unlockMasternode: {
+            title: "Unlock masternode",
             confirmTitle: "Confirm unlock",
-            message: "Do you want to unlock the service node?",
+            message: "Do you want to unlock the masternode?",
             ok: "UNLOCK"
         },
-        unlockServiceNodeWarning: {
-            title: "Unlock service node warning",
-            message: "Unlocking a partial stake in a node will also unstake for any other participants, if staking in a shared node its best to let the operator and other participants know you are unstaking.",
+        unlockMasternodeWarning: {
+            title: "Unlock masternode warning",
+            message: "Unlocking a partial supernode in a node will also unsupernode for any other participants, if quening in a shared node its best to let the operator and other participants know you are unquening.",
             ok: "CONTINUE"
         }
     },
@@ -194,8 +194,8 @@ export default {
         restoreFromBlockHeight: "RESTORE FROM BLOCK HEIGHT",
         restoreFromDate: "RESTORE FROM DATE",
         seedLanguage: "SEED LANGUAGE",
-        serviceNodeCommand: "SERVICE NODE COMMAND",
-        serviceNodeKey: "SERVICE NODE KEY",
+        masterNodeCommand: "MASTERNODE COMMAND",
+        masterNodeKey: "MASTERNODE KEY",
         signature: "SIGNATURE",
         transactionId: "TRANSACTION ID",
         walletFile: "WALLET FILE",
@@ -229,12 +229,12 @@ export default {
         copyQR: "Copy QR code",
         copySeedWords: "Copy seed words",
         copySpendKey: "Copy spend key",
-        copyServiceNodeKey: "Copy service node key",
+        copyMasternodeKey: "Copy masternode key",
         copyTransactionId: "Copy transaction ID",
         copyViewKey: "Copy view key",
         createNewWallet: "Create new wallet",
         deleteWallet: "Delete Wallet",
-        exit: "Exit Loki GUI Wallet",
+        exit: "Exit Quenero GUI Wallet",
         importOldGUIWallet: "Import wallets from old GUI",
         manageKeyImages: "Manage Key Images",
         openWallet: "Open wallet",
@@ -262,10 +262,10 @@ export default {
             },
             passwordUpdated: "Password updated",
             qrCopied: "QR code copied to clipboard",
-            registerServiceNodeSuccess: "Successfully registered service node",
+            registerMasternodeSuccess: "Successfully registered masternode",
             sendSuccess: "Transaction successfully sent",
             signatureCopied: "Signature copied to clipboard",
-            stakeSuccess: "Successfully staked",
+            supernodeSuccess: "Successfully supernoded",
             transactionNotesSaved: "Transaction notes saved"
         },
         errors: {
@@ -281,7 +281,7 @@ export default {
             enterTransactionProof: "Enter transaction proof",
             enterWalletName: "Enter a wallet name",
             errorSavingItem: "Error saving {item}",
-            failedServiceNodeUnlock: "Failed to unlock service node",
+            failedMasternodeUnlock: "Failed to unlock masternode",
             failedToSetLanguage: "Failed to set language: {lang}",
             failedWalletImport: "Failed to import wallet",
             failedWalletOpen: "Failed to open wallet. Please try again.",
@@ -296,8 +296,8 @@ export default {
             invalidRestoreDate: "Invalid restore date",
             invalidRestoreHeight: "Invalid restore height",
             invalidSeedLength: "Invalid seed word length",
-            invalidServiceNodeCommand: "Please enter the service node registration command",
-            invalidServiceNodeKey: "Service node key not valid",
+            invalidMasternodeCommand: "Please enter the masternode registration command",
+            invalidMasternodeKey: "Masternode key not valid",
             invalidWalletPath: "Invalid wallet path",
             keyImages: {
                 exporting: "Error exporting key images",
@@ -319,7 +319,7 @@ export default {
         warnings: {
             noKeyImageExport: "No key images found to export",
             usingLocalNode: "Could not access remote node, switching to local only",
-            usingRemoteNode: "lokid not found, using remote node"
+            usingRemoteNode: "quenerod not found, using remote node"
         }
     },
     placeholders: {
@@ -388,9 +388,9 @@ export default {
         destinationUnknown: "Destination Unknown",
         editAddressBookEntry: "Edit address book entry",
         loadingSettings: "Loading settings",
-        lokiBalance: "Balance",
-        lokiUnlockedBalance: "Unlocked balance",
-        lokiUnlockedShort: "Unlocked",
+        queneroBalance: "Balance",
+        queneroUnlockedBalance: "Unlocked balance",
+        queneroUnlockedShort: "Unlocked",
         noTransactionsFound: "No transactions found",
         notes: "Notes",
         numberOfUnspentOutputs: "Number of unspent outputs",
@@ -412,7 +412,7 @@ export default {
         saveToAddressBook: "Save to address book",
         seedWords: "Seed words",
         selectLanguage: "Select language",
-        serviceNodeRegistrationDescription: "Enter the {registerCommand} command produced by the daemon that is registering to become a Service Node using the \"{prepareCommand}\" command",
+        masterNodeRegistrationDescription: "Enter the {registerCommand} command produced by the daemon that is registering to become a Masternode using the \"{prepareCommand}\" command",
         spendKey: "Spend key",
         startingDaemon: "Starting daemon",
         startingWallet: "Starting wallet",
@@ -438,9 +438,9 @@ export default {
                 pendingIncoming: "Pending incoming",
                 pendingOutgoing: "Pending outgoing",
                 miner: "Miner",
-                serviceNode: "Service Node",
+                masterNode: "Masternode",
                 governance: "Governance",
-                stake: "Stake",
+                supernode: "Supernode",
                 failed: "Failed"
             }
         },
@@ -459,12 +459,12 @@ export default {
         },
         changePassword: "Change password",
         configure: "Configure",
-        currentlyStakedNodes: "Currently staked nodes",
+        currentlySNodes: "Currently supernoded nodes",
         privateKeys: "Private keys",
         rescanWallet: "Rescan wallet",
-        serviceNode: {
+        masterNode: {
             registration: "REGISTRATION",
-            staking: "STAKING"
+            quening: "QUENING"
         },
         settings: {
             title: "Settings",

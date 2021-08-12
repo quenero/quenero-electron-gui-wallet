@@ -32,15 +32,15 @@
 
                         <div class="infoBox">
                             <div class="infoBoxContent">
-                                <div class="text"><span>{{ $t("strings.lokiBalance") }}</span></div>
-                                <div class="value"><span><FormatLoki :amount="address.balance" /></span></div>
+                                <div class="text"><span>{{ $t("strings.queneroBalance") }}</span></div>
+                                <div class="value"><span><FormatQuenero :amount="address.balance" /></span></div>
                             </div>
                         </div>
 
                         <div class="infoBox">
                             <div class="infoBoxContent">
-                                <div class="text"><span>{{ $t("strings.lokiUnlockedBalance") }}</span></div>
-                                <div class="value"><span><FormatLoki :amount="address.unlocked_balance" /></span></div>
+                                <div class="text"><span>{{ $t("strings.queneroUnlockedBalance") }}</span></div>
+                                <div class="value"><span><FormatQuenero :amount="address.unlocked_balance" /></span></div>
                             </div>
                         </div>
 
@@ -58,14 +58,14 @@
 
                         <div class="infoBox">
                             <div class="infoBoxContent">
-                                <div class="text"><span>{{ $t("strings.lokiBalance") }}</span></div>
+                                <div class="text"><span>{{ $t("strings.queneroBalance") }}</span></div>
                                 <div class="value"><span>N/A</span></div>
                             </div>
                         </div>
 
                         <div class="infoBox">
                             <div class="infoBoxContent">
-                                <div class="text"><span>{{ $t("strings.lokiUnlockedBalance") }}</span></div>
+                                <div class="text"><span>{{ $t("strings.queneroUnlockedBalance") }}</span></div>
                                 <div class="value"><span>N/A</span></div>
                             </div>
                         </div>
@@ -132,7 +132,7 @@
 import { mapState } from "vuex"
 const { clipboard, nativeImage } = require("electron")
 import AddressHeader from "components/address_header"
-import FormatLoki from "components/format_loki"
+import FormatQuenero from "components/format_quenero"
 import QrcodeVue from "qrcode.vue";
 import TxList from "components/tx_list"
 export default {
@@ -188,7 +188,7 @@ export default {
     components: {
         AddressHeader,
         TxList,
-        FormatLoki,
+        FormatQuenero,
         QrcodeVue
     }
 }

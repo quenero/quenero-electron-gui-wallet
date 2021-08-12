@@ -12,7 +12,7 @@ export const privkey = (input) => {
     return input.length === 0 || (/^[0-9A-Fa-f]+$/.test(input) && input.length == 64)
 }
 
-export const service_node_key = (input) => {
+export const masternode_key = (input) => {
     return input.length === 64 && /^[0-9A-Za-z]+$/.test(input)
 }
 

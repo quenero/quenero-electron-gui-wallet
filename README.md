@@ -1,31 +1,31 @@
-# Loki Electron GUI Wallet
+# Quenero Electron GUI Wallet
 
 ### Introduction
-Loki is a private cryptocurrency based on Monero. Loki aims to provide a private data transmission layer using a second layer of Service Nodes.
-More information on the project can be found on the [website](https://loki.network) and in the [whitepaper](https://loki.network/whitepaper). Loki is an open source project, and we encourage contributions from anyone with something to offer.
+Quenero is a private cryptocurrency based on Monero. Quenero aims to provide a private data transmission layer using a second layer of Masternodes.
+More information on the project can be found on the [website](https://quenero.network) and in the [whitepaper](https://quenero.tech/whitepaper). Quenero is an open source project, and we encourage contributions from anyone with something to offer.
 <p align="center">
- <img src="https://raw.githubusercontent.com/KeeJef/loki-electron-gui-wallet/master/src-electron/icons/mrcuug.PNG" width="600">
+ <img src="https://raw.githubusercontent.com/KeeJef/quenero-electron-gui-wallet/master/src-electron/icons/mrcuug.PNG" width="600">
 </p>
 
 
 
 ### About this project
 
-This is the new electron GUI for Loki. It is open source and completely free to use without restrictions, anyone may create an alternative implementation of the Loki Electron GUI that uses the protocol and network in a compatible manner.
+This is the new electron GUI for Quenero. It is open source and completely free to use without restrictions, anyone may create an alternative implementation of the Quenero Electron GUI that uses the protocol and network in a compatible manner.
 
 Please submit any changes as pull requests to the development branch, all changes are assessed in the development branch before being merged to master, release tags are considered stable builds for the GUI.
 
 #### Pre-requisites
-- Download latest [Lokid](https://github.com/loki-project/loki/releases/latest)
+- Download latest [Quenerod](https://github.com/quenero/quenero/releases/latest)
 
 #### Commands
 ```
 nvm use 11.9.0
 npm install -g quasar-cli
-git clone https://github.com/loki-project/loki-electron-wallet
-cd loki-electron-wallet
-cp path_to_loki_binaries/lokid bin/
-cp path_to_loki_binaries/loki-wallet-rpc bin/
+git clone https://github.com/quenero/quenero-electron-wallet
+cd quenero-electron-wallet
+cp path_to_quenero_binaries/quenerod bin/
+cp path_to_quenero_binaries/quenero-wallet-rpc bin/
 npm install
 ```
 

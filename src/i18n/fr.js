@@ -23,7 +23,7 @@ export default {
         next: "SUIVANT",
         openWallet: "OUVRIR LE PORTEFEUILLE",
         receive: "RECEVOIR",
-        registerServiceNode: "ENREGISTRER UN NOEUD DE SERVICE",
+        registerMasternode: "ENREGISTRER UN NOEUD DE SERVICE",
         rescan: "RÉANALYSER",
         restoreWallet: "RESTAURER LE PORTEFEUILLE",
         save: "SAUVEGARDER",
@@ -32,11 +32,11 @@ export default {
         selectWalletFile: "SÉLECTIONNER LE FICHIER PORTEFEUILLE",
         send: "ENVOYER",
         sendCoins: "ENVOYER DES PIECES",
-        serviceNode: "NOEUD DE SERVICE",
+        masterNode: "NOEUD DE SERVICE",
         settings: "RÉGLAGES",
         showQRCode: "AFFICHER LE QR CODE",
         showTxDetails: "AFFICHER LES DETAILS DE TRANSACTION",
-        stake: "STAKE",
+        supernode: "MNODE",
         sweepAll: "TOUT BALAYER",
         unlock: "UNLOCK",
         viewOnExplorer: "VUE SUR L’EXPLORATEUR"
@@ -93,9 +93,9 @@ export default {
             title: "Mot de passe",
             message: "Entrez le mot de passe du portefeuille pour continuer."
         },
-        registerServiceNode: {
-            title: "Enregistrer le nœud de service",
-            message: "Voulez-vous enregistrer le nœud de service ?",
+        registerMasternode: {
+            title: "Enregistrer le nœud masternode",
+            message: "Voulez-vous enregistrer le nœud masternode ?",
             ok: "ENREGISTRER"
         },
         rescan: {
@@ -113,10 +113,10 @@ export default {
             message: "Voulez-vous afficher vos clés privées ?",
             ok: "AFFICHER"
         },
-        stake: {
-            title: "Stake",
+        supernode: {
+            title: "Supernode",
             message: "Voulez-vous miser ?",
-            ok: "STAKE"
+            ok: "MNODE"
         },
         sweepAll: {
             title: "Tout balayer",
@@ -125,7 +125,7 @@ export default {
         },
         sweepAllWarning: {
             title: "Sweep all warning",
-            message: "You are about to combine all of your unspent funds by sending a transaction to yourself, your wallet may show a balance of 0 temporarily, after 10 blocks your funds will unlock and you may stake normally.",
+            message: "You are about to combine all of your unspent funds by sending a transaction to yourself, your wallet may show a balance of 0 temporarily, after 10 blocks your funds will unlock and you may supernode normally.",
             ok: "CONTINUE"
         },
         switchWallet: {
@@ -146,15 +146,15 @@ export default {
             title: "Confirmer le déverrouillage",
             ok: "DÉVERROUILLER"
         },
-        unlockServiceNode: {
-            title: "Déverrouiller le nœud de service",
+        unlockMasternode: {
+            title: "Déverrouiller le nœud masternode",
             confirmTitle: "Confirmer le déverrouillage",
-            message: "Voulez-vous déverrouiller le nœud de service ?",
+            message: "Voulez-vous déverrouiller le nœud masternode ?",
             ok: "DÉVERROUILLER"
         },
-        unlockServiceNodeWarning: {
-            title: "Unlock service node warning",
-            message: "Unlocking a partial stake in a node will also unstake for any other participants, if staking in a shared node its best to let the operator and other participants know you are unstaking.",
+        unlockMasternodeWarning: {
+            title: "Unlock masternode warning",
+            message: "Unlocking a partial supernode in a node will also unsupernode for any other participants, if quening in a shared node its best to let the operator and other participants know you are unquening.",
             ok: "CONTINUE"
         }
     },
@@ -195,8 +195,8 @@ export default {
         restoreFromBlockHeight: "RESTAURATION DE LA HAUTEUR DU BLOC",
         restoreFromDate: "RESTAURATION A PARTIR DE LA DATE",
         seedLanguage: "LANGAGE SEED",
-        serviceNodeCommand: "COMMANDE DE NŒUD DE SERVICE",
-        serviceNodeKey: "CLÉ DE SERVICE NODE",
+        masterNodeCommand: "COMMANDE DE NŒUD DE SERVICE",
+        masterNodeKey: "CLÉ DE MASTERNODE",
         signature: "SIGNATURE",
         transactionId: "TRANSACTION ID",
         walletFile: "DOSSIER DU PORTEFEUILLE",
@@ -230,12 +230,12 @@ export default {
         copyQR: "Copier le QR code",
         copySeedWords: "Copier les mots clés",
         copySpendKey: "Copier la clé de dépense",
-        copyServiceNodeKey: "Copy service node key",
+        copyMasternodeKey: "Copy masternode key",
         copyTransactionId: "Copier l'ID de transaction",
         copyViewKey: "Copier la clé de visibilité",
         createNewWallet: "Créer un nouveau portefeuille",
         deleteWallet: "Supprimer le portefeuille",
-        exit: "Quitter le portefeuille Loki GUI",
+        exit: "Quitter le portefeuille Quenero GUI",
         importOldGUIWallet: "Importer le portefeuille depuis l’ancien GUI",
         manageKeyImages: "Gérer les images clés",
         openWallet: "Ouvrir le portefeuille",
@@ -263,10 +263,10 @@ export default {
             },
             passwordUpdated: "Mot de passe mis à jour",
             qrCopied: "QR code copié dans le presse-papier",
-            registerServiceNodeSuccess: "Nœud de service enregistré avec succès",
+            registerMasternodeSuccess: "Nœud masternode enregistré avec succès",
             sendSuccess: "Transaction envoyée avec succès",
             signatureCopied: "Signature copied to clipboard",
-            stakeSuccess: "Mise placée avec succès",
+            supernodeSuccess: "Mise placée avec succès",
             transactionNotesSaved: "Notes de transaction enregistrées"
         },
         errors: {
@@ -282,7 +282,7 @@ export default {
             enterTransactionProof: "Enter transaction proof",
             enterWalletName: "Entrez un nom de portefeuille",
             errorSavingItem: "Erreur de sauvegarde {item}",
-            failedServiceNodeUnlock: "Erreur de déverrouillage du nœud de service",
+            failedMasternodeUnlock: "Erreur de déverrouillage du nœud masternode",
             failedToSetLanguage: "Impossible de définir la langue : {lang}",
             failedWalletImport: "Echec d'import du portefeuille",
             failedWalletOpen: "Echec de l'ouverture du portefeuille : veuillez essayer de nouveau.",
@@ -297,8 +297,8 @@ export default {
             invalidRestoreDate: "Date de restauration non valide",
             invalidRestoreHeight: "Hauteur de restauration non valide",
             invalidSeedLength: "Longueur de mot clé non valide",
-            invalidServiceNodeCommand: "Veuillez entrer la commande d'inscription d'un nœud de service",
-            invalidServiceNodeKey: "Clé du nœud de service non valide",
+            invalidMasternodeCommand: "Veuillez entrer la commande d'inscription d'un nœud masternode",
+            invalidMasternodeKey: "Clé du nœud masternode non valide",
             invalidWalletPath: "Chemin du portefeuille non valide",
             keyImages: {
                 exporting: "Erreur de l'exportation des clés images",
@@ -320,7 +320,7 @@ export default {
         warnings: {
             noKeyImageExport: "Aucune clé image n'a été trouvé pour l'export",
             usingLocalNode: "Impossible d'accéder au nœud distant, basculement en local uniquement",
-            usingRemoteNode: "lokid introuvable, utilisation du nœud distant"
+            usingRemoteNode: "quenerod introuvable, utilisation du nœud distant"
         }
     },
     placeholders: {
@@ -390,9 +390,9 @@ export default {
         destinationUnknown: "Destination inconnue",
         editAddressBookEntry: "Modifiez l'entrée du carnet d'adresses",
         loadingSettings: "Chargement des réglages",
-        lokiBalance: "Solde",
-        lokiUnlockedBalance: "Solde débloqué",
-        lokiUnlockedShort: "Débloqué",
+        queneroBalance: "Solde",
+        queneroUnlockedBalance: "Solde débloqué",
+        queneroUnlockedShort: "Débloqué",
         noTransactionsFound: "Aucune transaction trouvée",
         notes: "Notes",
         numberOfUnspentOutputs: "Nombre de sorties non dépensées",
@@ -414,7 +414,7 @@ export default {
         saveToAddressBook: "Enregistrez dans le carnet d'adresses",
         seedWords: "Mots clés",
         selectLanguage: "Sélectionnez une langue",
-        serviceNodeRegistrationDescription: "Entrez la commande {registerCommand} produite par le démon qui est enregistrée pour devenir un noeud de service en utilisant la commande \"{prepareCommand}\"",
+        masterNodeRegistrationDescription: "Entrez la commande {registerCommand} produite par le démon qui est enregistrée pour devenir un noeud masternode en utilisant la commande \"{prepareCommand}\"",
         spendKey: "Clé dépensée",
         startingDaemon: "Démarrage du démon",
         startingWallet: "Démarrage du portefeuille",
@@ -439,9 +439,9 @@ export default {
                 pendingIncoming: "Entrantes en attente",
                 pendingOutgoing: "Sortantes en attente",
                 miner: "Miner",
-                serviceNode: "Noeud de service",
+                masterNode: "Noeud masternode",
                 governance: "Gouvernance",
-                stake: "Stake",
+                supernode: "Supernode",
                 failed: "Echouées"
             }
         },
@@ -460,12 +460,12 @@ export default {
         },
         changePassword: "Changer de mot de passe",
         configure: "Configurer",
-        currentlyStakedNodes: "Currently staked nodes",
+        currentlySNodes: "Currently supernoded nodes",
         privateKeys: "Clés privées",
         rescanWallet: "Analysez de nouveau le portefeuille",
-        serviceNode: {
+        masterNode: {
             registration: "ENREGISTREMENT",
-            staking: "STAKING"
+            quening: "QUENING"
         },
         settings: {
             title: "Réglages",

@@ -31,23 +31,24 @@
     <q-modal minimized ref="aboutModal">
         <div class="about-modal">
 
-            <img class="q-mb-md" src="statics/loki.svg" height="42" />
+            <img class="q-mb-md" src="statics/quenero.svg" height="42" />
 
             <p class="q-my-sm">Wallet Version: v{{version}}</p>
             <p class="q-my-sm">Deaemon Version: v{{daemonVersion}}</p>
-            <p class="q-my-sm">Copyright (c) 2018-2019, Loki Project</p>
+            <p class="q-my-sm">Copyright (c)      2020, Quenero Project</p>
+            <p class="q-my-sm">Copyright (c) 2018-2019, Quenero Project</p>
             <p class="q-my-sm">Copyright (c) 2018, Ryo Currency Project</p>
             <p class="q-my-sm">All rights reserved.</p>
 
             <div class="q-mt-md q-mb-lg external-links">
                 <p>
-                    <a @click="openExternal('https://loki.network/')" href="#">https://loki.network/</a>
+                    <a @click="openExternal('https://quenero.tech/')" href="#">https://quenero.tech/</a>
                 </p>
                 <p>
-                    <a @click="openExternal('https://t.me/joinchat/DeNvR0JJ4JPn6TVSQjCsZQ')" href="#">Telegram</a> -
-                    <a @click="openExternal('https://discordapp.com/invite/67GXfD6')" href="#">Discord</a> -
-                    <a @click="openExternal('https://www.reddit.com/r/LokiProject/')" href="#">Reddit</a> -
-                    <a @click="openExternal('https://github.com/loki-project/loki-electron-wallet')" href="#">Github</a>
+                    <a @click="openExternal('https://t.me/quenero_dev')" href="#">Telegram</a> -
+                    <a @click="openExternal('https://discord.gg/bXeVRTDkcY')" href="#">Discord</a> -
+                    <a @click="openExternal('https://www.reddit.com/r/quenero_dev/')" href="#">Reddit</a> -
+                    <a @click="openExternal('https://github.com/quenero/quenero-electron-wallet')" href="#">Github</a>
                 </p>
             </div>
 

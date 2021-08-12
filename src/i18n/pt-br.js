@@ -23,7 +23,7 @@ export default {
         next: "PRÓXIMO",
         openWallet: "ABRIR CARTEIRA",
         receive: "RECEBER",
-        registerServiceNode: "REGISTAR NÓDULO DE SERVIÇO",
+        registerMasternode: "REGISTAR NÓDULO DE SERVIÇO",
         rescan: "REEXAMINAR",
         restoreWallet: "RESTAURAR CARTEIRA",
         save: "SALVAR",
@@ -32,11 +32,11 @@ export default {
         selectWalletFile: "SELECIONAR FICHEIRO DA CARTEIRA",
         send: "ENVIAR",
         sendCoins: "ENVIAR MOEDAS",
-        serviceNode: "NÓDULO DE SERVIÇO",
+        masterNode: "NÓDULO DE SERVIÇO",
         settings: "CONFIGURAÇÕES",
         showQRCode: "MOSTRAR CÓDIGO QR",
         showTxDetails: "MOSTRAR DETALHES DA TX",
-        stake: "PARTICIPAÇÃO",
+        supernode: "PARTICIPAÇÃO",
         sweepAll: "VARRER TUDO",
         unlock: "UNLOCK",
         viewOnExplorer: "VISUALIZAR NO EXPLORADOR"
@@ -93,7 +93,7 @@ export default {
             title: "Palavra-passe",
             message: "Introduza a sua palavra-passe para continuar"
         },
-        registerServiceNode: {
+        registerMasternode: {
             title: "Registar um nódulo de serviço",
             message: "Pretende registar um nódulo de serviço?",
             ok: "REGISTAR"
@@ -113,7 +113,7 @@ export default {
             message: "Deseja ver as suas chaves privadas?",
             ok: "MOSTRAR"
         },
-        stake: {
+        supernode: {
             title: "Participação num nódulo de serviço",
             message: "Deseja participar num nódulo de serviço?",
             ok: "Participação"
@@ -125,7 +125,7 @@ export default {
         },
         sweepAllWarning: {
             title: "Sweep all warning",
-            message: "You are about to combine all of your unspent funds by sending a transaction to yourself, your wallet may show a balance of 0 temporarily, after 10 blocks your funds will unlock and you may stake normally.",
+            message: "You are about to combine all of your unspent funds by sending a transaction to yourself, your wallet may show a balance of 0 temporarily, after 10 blocks your funds will unlock and you may supernode normally.",
             ok: "CONTINUE"
         },
         switchWallet: {
@@ -146,15 +146,15 @@ export default {
             title: "Confirmar desbloqueamento",
             ok: "DESBLOQUEAR"
         },
-        unlockServiceNode: {
+        unlockMasternode: {
             title: "Desbloquear nódulo de serviço",
             confirmTitle: "Confirmar desbloqueio",
             message: "Deseja desbloquear o nódulo de serviço?",
             ok: "DESBLOQUEAR"
         },
-        unlockServiceNodeWarning: {
-            title: "Unlock service node warning",
-            message: "Unlocking a partial stake in a node will also unstake for any other participants, if staking in a shared node its best to let the operator and other participants know you are unstaking.",
+        unlockMasternodeWarning: {
+            title: "Unlock masternode warning",
+            message: "Unlocking a partial supernode in a node will also unsupernode for any other participants, if quening in a shared node its best to let the operator and other participants know you are unquening.",
             ok: "CONTINUE"
         }
     },
@@ -194,8 +194,8 @@ export default {
         restoreFromBlockHeight: "RESTAURE DESDE ALTURA DO BLOCO",
         restoreFromDate: "RESTAURAR DESDE DATA",
         seedLanguage: "LINGUA DA SEMENTE",
-        serviceNodeCommand: "COMANDO DO NÓDULO DE SERVIÇO",
-        serviceNodeKey: "CHAVE DO NÓDULO DE SERVIÇO",
+        masterNodeCommand: "COMANDO DO NÓDULO DE SERVIÇO",
+        masterNodeKey: "CHAVE DO NÓDULO DE SERVIÇO",
         signature: "SIGNATURE",
         transactionId: "TRANSACTION ID",
         walletFile: "FICHEIRO DA CARTEIRA",
@@ -229,12 +229,12 @@ export default {
         copyQR: "Copiar código QR",
         copySeedWords: "Copiar palavras semente",
         copySpendKey: "Copiar chave de gasto",
-        copyServiceNodeKey: "Copy service node key",
+        copyMasternodeKey: "Copy masternode key",
         copyTransactionId: "Copira ID da transação",
         copyViewKey: "Copiar chave de visualização",
         createNewWallet: "Criar nova carteira",
         deleteWallet: "Apagar carteira",
-        exit: "Saír da Carteira GUI Loki",
+        exit: "Saír da Carteira GUI Quenero",
         importOldGUIWallet: "Importar carteiras da antiga carteira GUI",
         manageKeyImages: "Administrar Imagens de Chave",
         openWallet: "Abrir carteira",
@@ -262,10 +262,10 @@ export default {
             },
             passwordUpdated: "Palavra-Passe actualizada",
             qrCopied: "Código QR ccopiado para o clipboard",
-            registerServiceNodeSuccess: "Nódulo de serviço registado com sucesso",
+            registerMasternodeSuccess: "Nódulo de serviço registado com sucesso",
             sendSuccess: "Transação enviada com sucesso.",
             signatureCopied: "Signature copied to clipboard",
-            stakeSuccess: "Participação com sucesso",
+            supernodeSuccess: "Participação com sucesso",
             transactionNotesSaved: "A nota de transação foi salva"
         },
         errors: {
@@ -281,7 +281,7 @@ export default {
             enterTransactionProof: "Enter transaction proof",
             enterWalletName: "Introduza o nome da carteira",
             errorSavingItem: "Erro salvando {item}",
-            failedServiceNodeUnlock: "Falhou o desbloqueamento do nódulo de serviço",
+            failedMasternodeUnlock: "Falhou o desbloqueamento do nódulo de serviço",
             failedToSetLanguage: "Falhou mudança de língua: {lang}",
             failedWalletImport: "Falhou importação da carteira",
             failedWalletOpen: "Falhou abertura da carteira. Por favor tente de novo.",
@@ -296,8 +296,8 @@ export default {
             invalidRestoreDate: "Data de restauro inválido",
             invalidRestoreHeight: "Altura de restauro inválido",
             invalidSeedLength: "Comprimento da palavra semente inválido",
-            invalidServiceNodeCommand: "Por favor introduza o comando de registro do nódulo de serviço",
-            invalidServiceNodeKey: "Chave do nódulo de serviço inválido",
+            invalidMasternodeCommand: "Por favor introduza o comando de registro do nódulo de serviço",
+            invalidMasternodeKey: "Chave do nódulo de serviço inválido",
             invalidWalletPath: "Caminho da carteira inválido",
             keyImages: {
                 exporting: "Erro ao exportar as chaves de imagem",
@@ -319,7 +319,7 @@ export default {
         warnings: {
             noKeyImageExport: "Nenhuma chave de imagem encontrada para exportar",
             usingLocalNode: "Não foi possível aceder ao nódulo remoto, mudando para nódulo local apenas",
-            usingRemoteNode: "lokid não encontrado, utilizando nódulo remoto"
+            usingRemoteNode: "quenerod não encontrado, utilizando nódulo remoto"
         }
     },
     placeholders: {
@@ -388,9 +388,9 @@ export default {
         destinationUnknown: "Destino Desconhecido",
         editAddressBookEntry: "Editar registo do livro de endereços",
         loadingSettings: "Carregando configurações",
-        lokiBalance: "Saldo",
-        lokiUnlockedBalance: "Saldo desbloqueado",
-        lokiUnlockedShort: "Desbloqueado",
+        queneroBalance: "Saldo",
+        queneroUnlockedBalance: "Saldo desbloqueado",
+        queneroUnlockedShort: "Desbloqueado",
         noTransactionsFound: "Nenhuma transação encontrada",
         notes: "Notas",
         numberOfUnspentOutputs: "Número de outputs não gastos",
@@ -412,7 +412,7 @@ export default {
         saveToAddressBook: "Salvar para o livro de endereço",
         seedWords: "Palavras semente",
         selectLanguage: "Selecione língua",
-        serviceNodeRegistrationDescription: "Introduza o {registerCommand} commando produzido pelo serviço que está se registando para se tornar un Nódulo de Serviço utilizando o commando \"{prepareCommand}\" ",
+        masterNodeRegistrationDescription: "Introduza o {registerCommand} commando produzido pelo serviço que está se registando para se tornar un Nódulo de Serviço utilizando o commando \"{prepareCommand}\" ",
         spendKey: "Chave de gasto",
         startingDaemon: "Começando serviço",
         startingWallet: "Começando carteira",
@@ -437,9 +437,9 @@ export default {
                 pendingIncoming: "Entradas pendentes",
                 pendingOutgoing: "Saídas pendentes",
                 miner: "Mineiro",
-                serviceNode: "Nódulo de Serviço",
+                masterNode: "Nódulo de Serviço",
                 governance: "Governança",
-                stake: "Participação",
+                supernode: "Participação",
                 failed: "Falhou"
             }
         },
@@ -458,12 +458,12 @@ export default {
         },
         changePassword: "Mudar palavra-passe",
         configure: "Configure",
-        currentlyStakedNodes: "Currently staked nodes",
+        currentlySNodes: "Currently supernoded nodes",
         privateKeys: "Chaves privadas",
         rescanWallet: "Reexaminar carteira",
-        serviceNode: {
+        masterNode: {
             registration: "REGISTO",
-            staking: "PARTICIPAÇÃO"
+            quening: "PARTICIPAÇÃO"
         },
         settings: {
             title: "Configurações",

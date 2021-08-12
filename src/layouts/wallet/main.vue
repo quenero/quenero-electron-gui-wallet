@@ -4,7 +4,7 @@
         <main-menu />
         <q-toolbar-title>
             <div class="flex items-center justify-center" style="margin-top:7px">
-                <img src="statics/loki.svg" height="32">
+                <img src="statics/quenero.svg" height="32">
             </div>
         </q-toolbar-title>
     </q-layout-header>
@@ -40,10 +40,10 @@
                         align="left"
                     />
                 </router-link>
-                <router-link to="/wallet/servicenode">
+                <router-link to="/wallet/masternode">
                     <q-btn
                         class="large-btn"
-                        :label="$t('buttons.serviceNode')"
+                        :label="$t('buttons.masterNode')"
                         size="md"
                         icon-right="router"
                         align="left"
@@ -84,7 +84,7 @@ const { clipboard } = require("electron")
 import { openURL } from "quasar"
 import { mapState } from "vuex"
 import WalletDetails from "components/wallet_details"
-import FormatLoki from "components/format_loki"
+import FormatQuenero from "components/format_quenero"
 import StatusFooter from "components/footer"
 import MainMenu from "components/mainmenu"
 export default {

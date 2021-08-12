@@ -7,15 +7,15 @@
 
     <template v-else>
         <q-infinite-scroll :handler="loadMore" ref="scroller">
-            <q-list link no-border :dark="theme=='dark'" class="loki-list tx-list">
-                <q-item class="loki-list-item transaction" v-for="(tx, index) in tx_list_paged" :key="`${tx.txid}-${tx.type}`"
+            <q-list link no-border :dark="theme=='dark'" class="quenero-list tx-list">
+                <q-item class="quenero-list-item transaction" v-for="(tx, index) in tx_list_paged" :key="`${tx.txid}-${tx.type}`"
                         @click.native="details(tx)" :class="'tx-'+tx.type">
                     <q-item-side class="type">
                         <div>{{ tx.type | typeToString }}</div>
                     </q-item-side>
                     <q-item-main class="main">
                         <q-item-tile class="amount" label>
-                            <FormatLoki :amount="tx.amount" />
+                            <FormatQuenero :amount="tx.amount" />
                         </q-item-tile>
                         <q-item-tile sublabel>{{ tx.txid }}</q-item-tile>
                     </q-item-main>
@@ -63,7 +63,7 @@ import { QSpinnerDots } from "quasar"
 import Identicon from "components/identicon"
 import TxTypeIcon from "components/tx_type_icon"
 import TxDetails from "components/tx_details"
-import FormatLoki from "components/format_loki"
+import FormatQuenero from "components/format_quenero"
 import { i18n } from "plugins/i18n"
 
 export default {
@@ -174,11 +174,11 @@ export default {
                 case "miner":
                     return i18n.t("strings.transactions.types.miner")
                 case "snode":
-                    return i18n.t("strings.transactions.types.serviceNode")
+                    return i18n.t("strings.transactions.types.masterNode")
                 case "gov":
                     return i18n.t("strings.transactions.types.governance")
-                case "stake":
-                    return i18n.t("strings.transactions.types.stake")
+                case "supernode":
+                    return i18n.t("strings.transactions.types.supernode")
                 default:
                     return "-"
             }
@@ -187,7 +187,7 @@ export default {
     methods: {
         filterTxList () {
             const all_in = ["in", "pool", "miner", "snode", "gov"]
-            const all_out = ["out", "pending", "stake"]
+            const all_out = ["out", "pending", "supernode"]
             const all_pending = ["pending", "pool"]
             this.tx_list_filtered = this.tx_list.filter((tx) => {
                 let valid = true
@@ -236,7 +236,7 @@ export default {
             // id, address, notes, amount, recipient name
             const fields = [tx.txid, tx.note]
 
-            const formattedAmount = tx.amount / 1e9
+            const formattedAmount = tx.amount / 1e12
             fields.push(String(formattedAmount))
 
             // Get all addresses and names and add them on
@@ -302,14 +302,14 @@ export default {
         Identicon,
         TxTypeIcon,
         TxDetails,
-        FormatLoki
+        FormatQuenero
     }
 }
 </script>
 
 <style lang="scss">
 .tx-list {
-    .loki-list-item {
+    .quenero-list-item {
         padding-top: 0;
         padding-bottom: 0;
     }

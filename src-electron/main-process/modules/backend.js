@@ -25,11 +25,11 @@ export class Backend {
 
     init (config) {
         if (os.platform() === "win32") {
-            this.config_dir = "C:\\ProgramData\\loki"
-            this.wallet_dir = `${os.homedir()}\\Documents\\Loki`
+            this.config_dir = "C:\\ProgramData\\quenero"
+            this.wallet_dir = `${os.homedir()}\\Documents\\Quenero`
         } else {
-            this.config_dir = path.join(os.homedir(), ".loki")
-            this.wallet_dir = path.join(os.homedir(), "Loki")
+            this.config_dir = path.join(os.homedir(), ".quenero")
+            this.wallet_dir = path.join(os.homedir(), "Quenero")
         }
 
         if (!fs.existsSync(this.config_dir)) {
@@ -45,11 +45,11 @@ export class Backend {
         const daemon = {
             type: "remote",
             p2p_bind_ip: "0.0.0.0",
-            p2p_bind_port: 22022,
+            p2p_bind_port: 19080,
             rpc_bind_ip: "127.0.0.1",
-            rpc_bind_port: 22023,
+            rpc_bind_port: 19081,
             zmq_rpc_bind_ip: "127.0.0.1",
-            zmq_rpc_bind_port: 22024,
+            zmq_rpc_bind_port: 19082,
             out_peers: -1,
             in_peers: -1,
             limit_rate_up: -1,
@@ -60,22 +60,22 @@ export class Backend {
         const daemons = {
             mainnet: {
                 ...daemon,
-                remote_host: "doopool.xyz",
-                remote_port: 22020
+                remote_host: "main.quenero.tech",
+                remote_port: 19090
             },
             stagenet: {
                 ...daemon,
                 type: "local",
-                p2p_bind_port: 38153,
-                rpc_bind_port: 38154,
-                zmq_rpc_bind_port: 38155
+                p2p_bind_port: 39090,
+                rpc_bind_port: 39091,
+                zmq_rpc_bind_port: 39092
             },
             testnet: {
                 ...daemon,
                 type: "local",
-                p2p_bind_port: 38156,
-                rpc_bind_port: 38157,
-                zmq_rpc_bind_port: 38158
+                p2p_bind_port: 29090,
+                rpc_bind_port: 29091,
+                zmq_rpc_bind_port: 29092
             }
         }
 
@@ -104,28 +104,16 @@ export class Backend {
 
         this.remotes = [
             {
-                host: "doopool.xyz",
+                host: "main.quenero.tech",
                 port: "22020"
             },
             {
-                host: "daemons.cryptopool.space",
-                port: "22023"
+                host: "daemons.quenero.tech",
+                port: "19081"
             },
             {
-                host: "node.loki-pool.com",
-                port: "18081"
-            },
-            {
-                host: "imaginary.stream",
-                port: "22023"
-            },
-            {
-                host: "nodes.hashvault.pro",
-                port: "22023"
-            },
-            {
-                host: "rpc.stakeit.io",
-                port: "22023"
+                host: "rpc.quenero.tech",
+                port: "19081"
             }
         ]
 
@@ -249,12 +237,12 @@ export class Backend {
             let path = null
             if (params.type === "tx") {
                 path = "tx"
-            } else if (params.type === "service_node") {
-                path = "service_node"
+            } else if (params.type === "masternode") {
+                path = "masternode"
             }
 
             if (path) {
-                const baseUrl = net_type === "testnet" ? "https://lokitestnet.com" : "https://lokiblocks.com"
+                const baseUrl = net_type === "testnet" ? "https://testnet.quenero.tech" : "https://explorer.quenero.tech"
                 const url = `${baseUrl}/${path}/`
                 require("electron").shell.openExternal(url + params.id)
             }

@@ -56,8 +56,8 @@ export default {
         code: 0,
         message: ""
     },
-    service_node_status: {
-        stake: {
+    masternode_status: {
+        supernode: {
             code: 0,
             message: "",
             sending: false
@@ -106,6 +106,6 @@ export default {
         connections: [],
         bans: [],
         tx_pool_backlog: [],
-        service_nodes: []
+        masternodes: []
     }
 }

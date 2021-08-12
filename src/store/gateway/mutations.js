@@ -19,7 +19,7 @@ export const set_tx_status = (state, data) => {
     state.tx_status = data
 }
 export const set_snode_status = (state, data) => {
-    state.service_node_status = objectAssignDeep.noMutate(state.service_node_status, data)
+    state.masternode_status = objectAssignDeep.noMutate(state.masternode_status, data)
 }
 export const set_prove_transaction_status = (state, data) => {
     state.prove_transaction_status = data

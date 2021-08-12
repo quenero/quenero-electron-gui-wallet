@@ -120,7 +120,7 @@ function createWindow () {
                 } else {
                     dialog.showMessageBox(mainWindow, {
                         title: "Startup error",
-                        message: `Loki Wallet is already open, or port ${config.port} is in use`,
+                        message: `Quenero Wallet is already open, or port ${config.port} is in use`,
                         type: "error",
                         buttons: ["ok"]
                     }, () => {

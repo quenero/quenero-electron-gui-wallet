@@ -1,6 +1,6 @@
 <template>
 <div class="column wallet-info">
-    <div class="row justify-between items-center wallet-header loki-green">
+    <div class="row justify-between items-center wallet-header quenero-green">
         <div class="title">{{ info.name }}</div>
         <WalletSettings />
     </div>
@@ -8,11 +8,11 @@
         <div class="row justify-center">
             <div class="funds column items-center">
                 <div class="balance">
-                    <div class="text"><span>{{ $t("strings.lokiBalance") }}</span></div>
-                    <div class="value"><span><FormatLoki :amount="info.balance" /></span></div>
+                    <div class="text"><span>{{ $t("strings.queneroBalance") }}</span></div>
+                    <div class="value"><span><FormatQuenero :amount="info.balance" /></span></div>
                 </div>
                 <div class="row unlocked">
-                    <span>{{ $t("strings.lokiUnlockedShort") }}: <FormatLoki :amount="info.unlocked_balance" /></span>
+                    <span>{{ $t("strings.queneroUnlockedShort") }}: <FormatQuenero :amount="info.unlocked_balance" /></span>
                 </div>
             </div>
         </div>
@@ -35,7 +35,7 @@
 <script>
 const { clipboard } = require("electron")
 import { mapState } from "vuex"
-import FormatLoki from "components/format_loki"
+import FormatQuenero from "components/format_quenero"
 import WalletSettings from "components/wallet_settings"
 export default {
     name: "WalletDetails",
@@ -55,7 +55,7 @@ export default {
         },
     },
     components: {
-        FormatLoki,
+        FormatQuenero,
         WalletSettings
     },
 }

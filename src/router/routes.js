@@ -107,9 +107,9 @@ export default [
                     import("pages/wallet/addressbook")
             },
             {
-                path: "servicenode",
+                path: "masternode",
                 component: () =>
-                    import("pages/wallet/service-node")
+                    import("pages/wallet/masternode")
             },
             {
                 path: "advanced",

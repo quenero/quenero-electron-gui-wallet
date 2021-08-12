@@ -1,7 +1,7 @@
 <template>
 <q-page>
     <div class="q-mx-md">
-        <LokiField class="q-mt-md" :label="$t('fieldLabels.walletName')" :error="$v.wallet.name.$error">
+        <QueneroField class="q-mt-md" :label="$t('fieldLabels.walletName')" :error="$v.wallet.name.$error">
             <q-input
                 v-model="wallet.name"
                 :placeholder="$t('placeholders.walletName')"
@@ -10,9 +10,9 @@
                 :dark="theme=='dark'"
                 hide-underline
                 />
-        </LokiField>
+        </QueneroField>
 
-        <LokiField class="q-mt-md" :label="$t('fieldLabels.mnemonicSeed')" :error="$v.wallet.seed.$error">
+        <QueneroField class="q-mt-md" :label="$t('fieldLabels.mnemonicSeed')" :error="$v.wallet.seed.$error">
             <q-input
                 v-model="wallet.seed"
                 :placeholder="$t('placeholders.mnemonicSeed')"
@@ -21,25 +21,25 @@
                 :dark="theme=='dark'"
                 hide-underline
                 />
-        </LokiField>
+        </QueneroField>
 
         <div class="row items-end q-mt-md">
             <div class="col">
-                <LokiField v-if="wallet.refresh_type=='date'" :label="$t('fieldLabels.restoreFromDate')">
+                <QueneroField v-if="wallet.refresh_type=='date'" :label="$t('fieldLabels.restoreFromDate')">
                     <q-datetime v-model="wallet.refresh_start_date" type="date"
-                                modal :min="1525305600000" :max="Date.now()"
+                                modal :min="1628419040" :max="Date.now()"
                                 :dark="theme=='dark'"
                                 hide-underline
                                 />
-                </LokiField>
-                <LokiField v-else-if="wallet.refresh_type=='height'" :label="$t('fieldLabels.restoreFromBlockHeight')" :error="$v.wallet.refresh_start_height.$error">
+                </QueneroField>
+                <QueneroField v-else-if="wallet.refresh_type=='height'" :label="$t('fieldLabels.restoreFromBlockHeight')" :error="$v.wallet.refresh_start_height.$error">
                     <q-input v-model="wallet.refresh_start_height" type="number"
                                 min="0"
                                 @blur="$v.wallet.refresh_start_height.$touch"
                                 :dark="theme=='dark'"
                                 hide-underline
                                 />
-                </LokiField>
+                </QueneroField>
             </div>
             <div class="col-auto q-ml-sm">
                 <template v-if="wallet.refresh_type=='date'">
@@ -65,7 +65,7 @@
             </div>
         </div>
 
-        <LokiField class="q-mt-md" :label="$t('fieldLabels.password')">
+        <QueneroField class="q-mt-md" :label="$t('fieldLabels.password')">
             <q-input
                 v-model="wallet.password"
                 :placeholder="$t('placeholders.walletPassword')"
@@ -74,9 +74,9 @@
                 :dark="theme=='dark'"
                 hide-underline
                 />
-        </LokiField>
+        </QueneroField>
 
-        <LokiField class="q-mt-md" :label="$t('fieldLabels.confirmPassword')">
+        <QueneroField class="q-mt-md" :label="$t('fieldLabels.confirmPassword')">
             <q-input
                 v-model="wallet.password_confirm"
                 @keyup.enter="restore_wallet"
@@ -84,7 +84,7 @@
                 :dark="theme=='dark'"
                 hide-underline
                 />
-        </LokiField>
+        </QueneroField>
 
         <q-field>
             <q-btn color="primary" @click="restore_wallet" :label="$t('buttons.restoreWallet')" />
@@ -97,7 +97,7 @@
 <script>
 import { required, numeric } from "vuelidate/lib/validators"
 import { mapState } from "vuex"
-import LokiField from "components/loki_field"
+import QueneroField from "components/quenero_field"
 export default {
     data () {
         return {
@@ -106,7 +106,7 @@ export default {
                 seed: "",
                 refresh_type: "date",
                 refresh_start_height: 0,
-                refresh_start_date: 1525305600000, // timestamp of block 1
+                refresh_start_date: 1628419040, // timestamp of block 1
                 password: "",
                 password_confirm: ""
             },
@@ -210,7 +210,7 @@ export default {
         }
     },
     components: {
-        LokiField
+        QueneroField
     }
 }
 </script>

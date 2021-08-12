@@ -115,9 +115,9 @@ export class WalletRPC {
                 portscanner.checkPortStatus(this.port, this.hostname).catch(e => "closed").then(status => {
                     if (status === "closed") {
                         if (process.platform === "win32") {
-                            this.walletRPCProcess = child_process.spawn(path.join(__ryo_bin, "loki-wallet-rpc.exe"), args)
+                            this.walletRPCProcess = child_process.spawn(path.join(__ryo_bin, "quenero-wallet-rpc.exe"), args)
                         } else {
-                            this.walletRPCProcess = child_process.spawn(path.join(__ryo_bin, "loki-wallet-rpc"), args, {
+                            this.walletRPCProcess = child_process.spawn(path.join(__ryo_bin, "quenero-wallet-rpc"), args, {
                                 detached: true
                             })
                         }
@@ -219,7 +219,7 @@ export class WalletRPC {
             break
 
         case "restore_view_wallet":
-            // TODO: Decide if we want this for loki
+            // TODO: Decide if we want this for quenero
             this.restoreViewWallet(params.name, params.password, params.address, params.viewkey,
                 params.refresh_type, params.refresh_type == "date" ? params.refresh_start_date : params.refresh_start_height)
             break
@@ -236,16 +236,16 @@ export class WalletRPC {
             this.closeWallet()
             break
 
-        case "stake":
-            this.stake(params.password, params.amount, params.key, params.destination)
+        case "supernode":
+            this.supernode(params.password, params.amount, params.key, params.destination)
             break
 
-        case "register_service_node":
+        case "register_masternode":
             this.registerSnode(params.password, params.string)
             break
 
-        case "unlock_stake":
-            this.unlockStake(params.password, params.service_node_key, params.confirmed || false)
+        case "unlock_supernode":
+            this.unlockSupernode(params.password, params.masternode_key, params.confirmed || false)
             break
 
         case "transfer":
@@ -729,11 +729,11 @@ export class WalletRPC {
         })
     }
 
-    stake (password, amount, service_node_key, destination) {
+    supernode (password, amount, masternode_key, destination) {
         crypto.pbkdf2(password, this.auth[2], 1000, 64, "sha512", (err, password_hash) => {
             if (err) {
                 this.sendGateway("set_snode_status", {
-                    stake: {
+                    supernode: {
                         code: -1,
                         i18n: "notification.errors.internalError",
                         sending: false
@@ -743,7 +743,7 @@ export class WalletRPC {
             }
             if (!this.isValidPasswordHash(password_hash)) {
                 this.sendGateway("set_snode_status", {
-                    stake: {
+                    supernode: {
                         code: -1,
                         i18n: "notification.errors.invalidPassword",
                         sending: false
@@ -752,17 +752,17 @@ export class WalletRPC {
                 return
             }
 
-            amount = (parseFloat(amount) * 1e9).toFixed(0)
+            amount = (parseFloat(amount) * 1e12).toFixed(0)
 
-            this.sendRPC("stake", {
+            this.sendRPC("supernode", {
                 amount,
                 destination,
-                service_node_key
+                masternode_key
             }).then((data) => {
                 if (data.hasOwnProperty("error")) {
                     let error = data.error.message.charAt(0).toUpperCase() + data.error.message.slice(1)
                     this.sendGateway("set_snode_status", {
-                        stake: {
+                        supernode: {
                             code: -1,
                             message: error,
                             sending: false
@@ -772,12 +772,12 @@ export class WalletRPC {
                 }
 
                 // Update the new snode list
-                this.backend.daemon.updateServiceNodes()
+                this.backend.daemon.updateMasternodes()
 
                 this.sendGateway("set_snode_status", {
-                    stake: {
+                    supernode: {
                         code: 0,
-                        i18n: "notification.positive.stakeSuccess",
+                        i18n: "notification.positive.supernodeSuccess",
                         sending: false
                     }
                 })
@@ -785,7 +785,7 @@ export class WalletRPC {
         })
     }
 
-    registerSnode (password, register_service_node_str) {
+    registerSnode (password, register_masternode_str) {
         crypto.pbkdf2(password, this.auth[2], 1000, 64, "sha512", (err, password_hash) => {
             if (err) {
                 this.sendGateway("set_snode_status", {
@@ -809,8 +809,8 @@ export class WalletRPC {
                 return
             }
 
-            this.sendRPC("register_service_node", {
-                register_service_node_str
+            this.sendRPC("register_masternode", {
+                register_masternode_str
             }).then((data) => {
                 if (data.hasOwnProperty("error")) {
                     const error = data.error.message.charAt(0).toUpperCase() + data.error.message.slice(1)
@@ -825,12 +825,12 @@ export class WalletRPC {
                 }
 
                 // Update the new snode list
-                this.backend.daemon.updateServiceNodes()
+                this.backend.daemon.updateMasternodes()
 
                 this.sendGateway("set_snode_status", {
                     registration: {
                         code: 0,
-                        i18n: "notification.positive.registerServiceNodeSuccess",
+                        i18n: "notification.positive.registerMasternodeSuccess",
                         sending: false
                     }
                 })
@@ -838,7 +838,7 @@ export class WalletRPC {
         })
     }
 
-    unlockStake (password, service_node_key, confirmed = false) {
+    unlockSupernode (password, masternode_key, confirmed = false) {
         const sendError = (message, i18n = true) => {
             const key = i18n ? "i18n" : "message"
             this.sendGateway("set_snode_status", {
@@ -864,7 +864,7 @@ export class WalletRPC {
 
             const sendRPC = (path) => {
                 return this.sendRPC(path, {
-                    service_node_key
+                    masternode_key
                 }).then(data => {
                     if (data.hasOwnProperty("error")) {
                         const error = data.error.message.charAt(0).toUpperCase() + data.error.message.slice(1)
@@ -873,7 +873,7 @@ export class WalletRPC {
                     }
 
                     if (!data.hasOwnProperty("result")) {
-                        sendError("notification.errors.failedServiceNodeUnlock")
+                        sendError("notification.errors.failedMasternodeUnlock")
                         return null
                     }
 
@@ -882,7 +882,7 @@ export class WalletRPC {
             }
 
             if (confirmed) {
-                sendRPC("request_stake_unlock").then((data) => {
+                sendRPC("request_supernode_unlock").then((data) => {
                     if (!data) return
 
                     const unlock = {
@@ -893,13 +893,13 @@ export class WalletRPC {
 
                     // Update the new snode list
                     if (data.unlocked) {
-                        this.backend.daemon.updateServiceNodes()
+                        this.backend.daemon.updateMasternodes()
                     }
 
                     this.sendGateway("set_snode_status", { unlock })
                 })
             } else {
-                sendRPC("can_request_stake_unlock").then((data) => {
+                sendRPC("can_request_supernode_unlock").then((data) => {
                     if (!data) return
 
                     const unlock = {
@@ -933,7 +933,7 @@ export class WalletRPC {
                 return
             }
 
-            amount = (parseFloat(amount) * 1e9).toFixed(0)
+            amount = (parseFloat(amount) * 1e12).toFixed(0)
 
             let sweep_all = amount == this.wallet_state.unlocked_balance
 
@@ -1203,7 +1203,7 @@ export class WalletRPC {
                     }
                 }
 
-                const types = ["in", "out", "pending", "failed", "pool", "miner", "snode", "gov", "stake"]
+                const types = ["in", "out", "pending", "failed", "pool", "miner", "snode", "gov", "supernode"]
                 types.forEach(type => {
                     if (data.result.hasOwnProperty(type)) {
                         wallet.transactions.tx_list = wallet.transactions.tx_list.concat(data.result[type])
@@ -1516,9 +1516,9 @@ export class WalletRPC {
             wallets.legacy = []
             let legacy_paths = []
             if (os.platform() == "win32") {
-                legacy_paths = ["C:\\ProgramData\\Loki"]
+                legacy_paths = ["C:\\ProgramData\\Quenero"]
             } else {
-                legacy_paths = [path.join(os.homedir(), "Loki")]
+                legacy_paths = [path.join(os.homedir(), "Quenero")]
             }
             for (var i = 0; i < legacy_paths.length; i++) {
                 let legacy_config_path = path.join(legacy_paths[i], "config", "wallet_info.json")

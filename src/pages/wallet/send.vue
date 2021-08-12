@@ -11,37 +11,37 @@
 
                 <!-- Amount -->
                 <div class="col-6">
-                    <LokiField :label="$t('fieldLabels.amount')" :error="$v.newTx.amount.$error">
+                    <QueneroField :label="$t('fieldLabels.amount')" :error="$v.newTx.amount.$error">
                         <q-input v-model="newTx.amount"
                             :dark="theme=='dark'"
                             type="number"
                             min="0"
-                            :max="unlocked_balance / 1e9"
+                            :max="unlocked_balance / 1e12"
                             placeholder="0"
                             @blur="$v.newTx.amount.$touch"
                             hide-underline
                         />
-                        <q-btn color="secondary" @click="newTx.amount = unlocked_balance / 1e9" :text-color="theme=='dark'?'white':'dark'">
+                        <q-btn color="secondary" @click="newTx.amount = unlocked_balance / 1e12" :text-color="theme=='dark'?'white':'dark'">
                             {{ $t("buttons.all") }}
                         </q-btn>
-                    </LokiField>
+                    </QueneroField>
                 </div>
 
                 <!-- Priority -->
                 <div class="col-6">
-                    <LokiField :label="$t('fieldLabels.priority')">
+                    <QueneroField :label="$t('fieldLabels.priority')">
                         <q-select :dark="theme=='dark'"
                             v-model="newTx.priority"
                             :options="priorityOptions"
                             hide-underline
                         />
-                    </LokiField>
+                    </QueneroField>
                 </div>
             </div>
 
             <!-- Address -->
             <div class="col q-mt-sm">
-                <LokiField :label="$t('fieldLabels.address')" :error="$v.newTx.address.$error">
+                <QueneroField :label="$t('fieldLabels.address')" :error="$v.newTx.address.$error">
                      <q-input v-model="newTx.address"
                         :dark="theme=='dark'"
                         @blur="$v.newTx.address.$touch"
@@ -51,31 +51,31 @@
                     <q-btn color="secondary" :text-color="theme=='dark'?'white':'dark'" to="addressbook">
                         {{ $t("buttons.contacts") }}
                     </q-btn>
-                </LokiField>
+                </QueneroField>
             </div>
 
             <!-- Payment ID -->
             <div class="col q-mt-sm">
-                <LokiField :label="$t('fieldLabels.paymentId')" :error="$v.newTx.payment_id.$error" optional>
+                <QueneroField :label="$t('fieldLabels.paymentId')" :error="$v.newTx.payment_id.$error" optional>
                      <q-input v-model="newTx.payment_id"
                         :dark="theme=='dark'"
                         @blur="$v.newTx.payment_id.$touch"
                         :placeholder="$t('placeholders.hexCharacters', { count: '16 or 64' })"
                         hide-underline
                     />
-                </LokiField>
+                </QueneroField>
             </div>
 
             <!-- Notes -->
             <div class="col q-mt-sm">
-                <LokiField :label="$t('fieldLabels.notes')" optional>
+                <QueneroField :label="$t('fieldLabels.notes')" optional>
                      <q-input v-model="newTx.note"
                         type="textarea"
                         :dark="theme=='dark'"
                         :placeholder="$t('placeholders.transactionNotes')"
                         hide-underline
                     />
-                </LokiField>
+                </QueneroField>
             </div>
 
             <!-- Save to address book -->
@@ -84,14 +84,14 @@
             </q-field>
 
             <div v-if="newTx.address_book.save">
-                <LokiField :label="$t('fieldLabels.name')" optional>
+                <QueneroField :label="$t('fieldLabels.name')" optional>
                      <q-input v-model="newTx.address_book.name"
                         :dark="theme=='dark'"
                         :placeholder="$t('placeholders.addressBookName')"
                         hide-underline
                     />
-                </LokiField>
-                <LokiField class="q-mt-sm" :label="$t('fieldLabels.notes')" optional>
+                </QueneroField>
+                <QueneroField class="q-mt-sm" :label="$t('fieldLabels.notes')" optional>
                      <q-input v-model="newTx.address_book.description"
                         type="textarea"
                         rows="2"
@@ -99,7 +99,7 @@
                         :placeholder="$t('placeholders.additionalNotes')"
                         hide-underline
                     />
-                </LokiField>
+                </QueneroField>
             </div>
 
             <q-field class="q-pt-sm">
@@ -125,7 +125,7 @@ import { mapState } from "vuex"
 import { required, decimal } from "vuelidate/lib/validators"
 import { payment_id, address, greater_than_zero } from "src/validators/common"
 import Identicon from "components/identicon"
-import LokiField from "components/loki_field"
+import QueneroField from "components/quenero_field"
 import WalletPassword from "src/mixins/wallet_password"
 const objectAssignDeep = require("object-assign-deep");
 
@@ -263,7 +263,7 @@ export default {
                     message: this.$t("notification.errors.zeroAmount")
                 })
                 return
-            } else if(this.newTx.amount > this.unlocked_balance / 1e9) {
+            } else if(this.newTx.amount > this.unlocked_balance / 1e12) {
                 this.$q.notify({
                     type: "negative",
                     timeout: 1000,
@@ -319,7 +319,7 @@ export default {
     mixins: [WalletPassword],
     components: {
         Identicon,
-        LokiField
+        QueneroField
     }
 }
 </script>

@@ -28,18 +28,18 @@ export class Daemon {
     checkVersion () {
         return new Promise((resolve, reject) => {
             if (process.platform === "win32") {
-                let lokid_path = path.join(__ryo_bin, "lokid.exe")
-                let lokid_version_cmd = `"${lokid_path}" --version`
-                if (!fs.existsSync(lokid_path)) { resolve(false) }
-                child_process.exec(lokid_version_cmd, (error, stdout, stderr) => {
+                let quenerod_path = path.join(__ryo_bin, "quenerod.exe")
+                let quenerod_version_cmd = `"${quenerod_path}" --version`
+                if (!fs.existsSync(quenerod_path)) { resolve(false) }
+                child_process.exec(quenerod_version_cmd, (error, stdout, stderr) => {
                     if (error) { resolve(false) }
                     resolve(stdout)
                 })
             } else {
-                let lokid_path = path.join(__ryo_bin, "lokid")
-                let lokid_version_cmd = `"${lokid_path}" --version`
-                if (!fs.existsSync(lokid_path)) { resolve(false) }
-                child_process.exec(lokid_version_cmd, { detached: true }, (error, stdout, stderr) => {
+                let quenerod_path = path.join(__ryo_bin, "quenerod")
+                let quenerod_version_cmd = `"${quenerod_path}" --version`
+                if (!fs.existsSync(quenerod_path)) { resolve(false) }
+                child_process.exec(quenerod_version_cmd, { detached: true }, (error, stdout, stderr) => {
                     if (error) { resolve(false) }
                     resolve(stdout)
                 })
@@ -119,7 +119,7 @@ export class Daemon {
                 args.push("--stagenet")
             }
 
-            args.push("--log-file", path.join(dirs[net_type], "logs", "lokid.log"))
+            args.push("--log-file", path.join(dirs[net_type], "logs", "quenerod.log"))
 
             if (daemon.rpc_bind_ip !== "127.0.0.1") { args.push("--confirm-external-bind") }
 
@@ -139,9 +139,9 @@ export class Daemon {
             portscanner.checkPortStatus(this.port, this.hostname).catch(e => "closed").then(status => {
                 if (status === "closed") {
                     if (process.platform === "win32") {
-                        this.daemonProcess = child_process.spawn(path.join(__ryo_bin, "lokid.exe"), args)
+                        this.daemonProcess = child_process.spawn(path.join(__ryo_bin, "quenerod.exe"), args)
                     } else {
-                        this.daemonProcess = child_process.spawn(path.join(__ryo_bin, "lokid"), args, {
+                        this.daemonProcess = child_process.spawn(path.join(__ryo_bin, "quenerod"), args, {
                             detached: true
                         })
                     }
@@ -315,11 +315,11 @@ export class Daemon {
         }, 30 * 1000) // 30 seconds
         this.heartbeatSlowAction()
 
-        clearInterval(this.serviceNodeHeartbeat)
-        this.serviceNodeHeartbeat = setInterval(() => {
-            this.updateServiceNodes()
+        clearInterval(this.masterNodeHeartbeat)
+        this.masterNodeHeartbeat = setInterval(() => {
+            this.updateMasternodes()
         }, 5 * 60 * 1000) // 5 minutes
-        this.updateServiceNodes()
+        this.updateMasternodes()
     }
 
     heartbeatAction () {
@@ -382,19 +382,19 @@ export class Daemon {
         })
     }
 
-    updateServiceNodes () {
-        // Get the latest service node data
-        this.getRPC("service_nodes").then(data => {
+    updateMasternodes () {
+        // Get the latest masternode data
+        this.getRPC("masternodes").then(data => {
             if (!data.hasOwnProperty("result")) return
 
-            const states = data.result.service_node_states
+            const states = data.result.masternode_states
 
             // Only store the data we need
-            const service_nodes = states.map(s => ({
-                service_node_pubkey: s.service_node_pubkey,
+            const masternodes = states.map(s => ({
+                masternode_pubkey: s.masternode_pubkey,
                 contributors: s.contributors
             }))
-            this.sendGateway("set_daemon_data", { service_nodes })
+            this.sendGateway("set_daemon_data", { masternodes })
         })
     }
 

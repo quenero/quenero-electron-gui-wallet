@@ -1,11 +1,11 @@
 {
-  "name": "loki-electron-wallet",
+  "name": "quenero-electron-wallet",
   "version": "1.2.1",
   "daemonVersion": "3.0.4",
-  "description": "Modern GUI interface for Loki Currency",
-  "productName": "Loki Electron Wallet",
-  "cordovaId": "com.lokinetwork.wallet",
-  "author": "Loki",
+  "description": "Modern GUI interface for Quenero Currency",
+  "productName": "Quenero Electron Wallet",
+  "cordovaId": "tech.quenero.wallet",
+  "author": "Quenero",
   "private": true,
   "scripts": {
     "dev": "quasar dev -m electron -t mat",

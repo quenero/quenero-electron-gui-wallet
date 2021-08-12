@@ -5,36 +5,36 @@
             {{ $t('strings.checkTransaction.description') }}
         </div>
         <div>
-            <LokiField :label="$t('fieldLabels.transactionId')" :error="$v.txid.$error">
+            <QueneroField :label="$t('fieldLabels.transactionId')" :error="$v.txid.$error">
                 <q-input v-model="txid"
                     :dark="theme=='dark'"
                     :placeholder="$t('placeholders.pasteTransactionId')"
                     @blur="$v.txid.$touch"
                     hide-underline
                 />
-            </LokiField>
-            <LokiField class="q-mt-md" :label="$t('fieldLabels.address')" :error="$v.address.$error" optional>
+            </QueneroField>
+            <QueneroField class="q-mt-md" :label="$t('fieldLabels.address')" :error="$v.address.$error" optional>
                 <q-input v-model="address"
                     :dark="theme=='dark'"
                     :placeholder="$t('placeholders.recipientWalletAddress')"
                     @blur="$v.address.$touch"
                     hide-underline
                 />
-            </LokiField>
-            <LokiField class="q-mt-md" :label="$t('fieldLabels.message')" optional>
+            </QueneroField>
+            <QueneroField class="q-mt-md" :label="$t('fieldLabels.message')" optional>
                 <q-input v-model="message"
                     :dark="theme=='dark'"
                     :placeholder="$t('placeholders.proveOptionalMessage')"
                     hide-underline
                 />
-            </LokiField>
-            <LokiField class="q-mt-md" :label="$t('fieldLabels.signature')" :error="$v.signature.$error">
+            </QueneroField>
+            <QueneroField class="q-mt-md" :label="$t('fieldLabels.signature')" :error="$v.signature.$error">
                 <q-input v-model="signature"
                     :dark="theme=='dark'"
                     :placeholder="$t('placeholders.pasteTransactionProof')"
                     hide-underline
                 />
-            </LokiField>
+            </QueneroField>
             <q-field class="buttons q-pt-sm">
                 <q-btn color="primary" @click="check" :label="$t('buttons.check')" />
                 <q-btn color="secondary" @click="clear" :label="$t('buttons.clear')" v-if="canClear"/>
@@ -51,7 +51,7 @@
             </div>
             <div class="q-mb-sm" v-if="status.state.received != null">
                 <div class="title">{{ $t('strings.checkTransaction.infoTitles.received') }}</div>
-                <div><FormatLoki :amount="status.state.received" raw-value /></div>
+                <div><FormatQuenero :amount="status.state.received" raw-value /></div>
             </div>
             <div class="q-mb-sm" v-if="status.state.in_pool != null">
                 <div class="title">{{ $t('strings.checkTransaction.infoTitles.inPool') }}</div>
@@ -71,8 +71,8 @@ import { mapState } from "vuex"
 import { required } from "vuelidate/lib/validators"
 import { address } from "src/validators/common"
 import { i18n } from "plugins/i18n"
-import LokiField from "components/loki_field"
-import FormatLoki from "components/format_loki"
+import QueneroField from "components/quenero_field"
+import FormatQuenero from "components/format_quenero"
 
 export default {
     name: "CheckTransaction",
@@ -176,8 +176,8 @@ export default {
         }
     },
     components: {
-        LokiField,
-        FormatLoki
+        QueneroField,
+        FormatQuenero
     }
 }
 </script>

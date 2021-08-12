@@ -1,12 +1,12 @@
 <template>
-<div class="service-node-unlock" v-if="service_nodes.length > 0">
+<div class="masternode-unlock" v-if="masternodes.length > 0">
     <div class="q-pa-md">
-        <div class="q-pb-sm header">{{ $t('titles.currentlyStakedNodes') }}</div>
-        <q-list class="service-node-list" no-border>
-            <q-item v-for="node in service_nodes" :key="node.key">
+        <div class="q-pb-sm header">{{ $t('titles.currentlySNodes') }}</div>
+        <q-list class="masternode-list" no-border>
+            <q-item v-for="node in masternodes" :key="node.key">
                 <q-item-main>
                     <q-item-tile class="ellipsis" label>{{ node.key }}</q-item-tile>
-                    <q-item-tile sublabel class="non-selectable">{{ $t('strings.contribution') }}: <FormatLoki :amount="node.amount" /></q-item-tile>
+                    <q-item-tile sublabel class="non-selectable">{{ $t('strings.contribution') }}: <FormatQuenero :amount="node.amount" /></q-item-tile>
                 </q-item-main>
                 <q-item-side>
                     <q-btn
@@ -20,7 +20,7 @@
                  <q-context-menu>
                     <q-list link separator style="min-width: 150px; max-height: 300px;">
                         <q-item v-close-overlay @click.native="copyKey(node.key, $event)">
-                            <q-item-main :label="$t('menuItems.copyServiceNodeKey')" />
+                            <q-item-main :label="$t('menuItems.copyMasternodeKey')" />
                         </q-item>
                         <q-item v-close-overlay @click.native="openExplorer(node.key)">
                             <q-item-main :label="$t('menuItems.viewOnExplorer')" />
@@ -41,16 +41,16 @@
 const objectAssignDeep = require("object-assign-deep");
 import { mapState } from "vuex"
 import { required } from "vuelidate/lib/validators"
-import { service_node_key } from "src/validators/common"
-import LokiField from "components/loki_field"
+import { masternode_key } from "src/validators/common"
+import QueneroField from "components/quenero_field"
 import WalletPassword from "src/mixins/wallet_password"
-import FormatLoki from "components/format_loki"
+import FormatQuenero from "components/format_quenero"
 
 export default {
-    name: "ServiceNodeUnlock",
+    name: "MasternodeUnlock",
     computed: mapState({
         theme: state => state.gateway.app.config.appearance.theme,
-        unlock_status: state => state.gateway.service_node_status.unlock,
+        unlock_status: state => state.gateway.masternode_status.unlock,
         our_address: state => {
             const primary = state.gateway.wallet.address_list.primary[0]
             return (primary && primary.address) || null
@@ -58,21 +58,21 @@ export default {
         is_ready (state) {
             return this.$store.getters["gateway/isReady"]
         },
-        service_nodes (state) {
-            const nodes = state.gateway.daemon.service_nodes
+        masternodes (state) {
+            const nodes = state.gateway.daemon.masternodes
             const getContribution = node => node.contributors.find(c => c.address === this.our_address)
             // Only show nodes that we contributed to
             return nodes.filter(getContribution).map(n => {
                 const ourContribution = getContribution(n)
                 return {
-                    key: n.service_node_pubkey,
+                    key: n.masternode_pubkey,
                     amount: ourContribution.amount
                 }
             })
         }
     }),
     validations: {
-        node_key: { required, service_node_key }
+        node_key: { required, masternode_key }
     },
     watch: {
         unlock_status: {
@@ -93,10 +93,10 @@ export default {
                     case 1:
                         // Tell the user to confirm
                          this.$q.dialog({
-                            title: this.$t("dialog.unlockServiceNode.confirmTitle"),
+                            title: this.$t("dialog.unlockMasternode.confirmTitle"),
                             message: this.unlock_status.message,
                             ok: {
-                                label: this.$t("dialog.unlockServiceNode.ok")
+                                label: this.$t("dialog.unlockMasternode.ok")
                             },
                             cancel: {
                                 flat: true,
@@ -127,10 +127,10 @@ export default {
     methods: {
         unlockWarning (key) {
             this.$q.dialog({
-                title: this.$t("dialog.unlockServiceNodeWarning.title"),
-                message: this.$t("dialog.unlockServiceNodeWarning.message"),
+                title: this.$t("dialog.unlockMasternodeWarning.title"),
+                message: this.$t("dialog.unlockMasternodeWarning.message"),
                 ok: {
-                    label: this.$t("dialog.unlockServiceNodeWarning.ok")
+                    label: this.$t("dialog.unlockMasternodeWarning.ok")
                 },
                 cancel: {
                     flat: true,
@@ -146,10 +146,10 @@ export default {
             this.key = key
 
             this.showPasswordConfirmation({
-                title: this.$t("dialog.unlockServiceNode.title"),
-                noPasswordMessage: this.$t("dialog.unlockServiceNode.message"),
+                title: this.$t("dialog.unlockMasternode.title"),
+                noPasswordMessage: this.$t("dialog.unlockMasternode.message"),
                 ok: {
-                    label: this.$t("dialog.unlockServiceNode.ok")
+                    label: this.$t("dialog.unlockMasternode.ok")
                 },
             }).then(password => {
                 this.password = password
@@ -165,9 +165,9 @@ export default {
                     sending: true
                 }
             })
-            this.$gateway.send("wallet", "unlock_stake", {
+            this.$gateway.send("wallet", "unlock_supernode", {
                 password,
-                service_node_key: key,
+                masternode_key: key,
                 confirmed
             })
         },
@@ -183,24 +183,24 @@ export default {
             this.$q.notify({
                 type: "positive",
                 timeout: 1000,
-                message: this.$t("notification.positive.copied", { item: "Service node key" })
+                message: this.$t("notification.positive.copied", { item: "Masternode key" })
             })
         },
         openExplorer (key) {
-            this.$gateway.send("core", "open_explorer", {type: "service_node", id: key})
+            this.$gateway.send("core", "open_explorer", {type: "masternode", id: key})
         }
     },
 
     mixins: [WalletPassword],
     components: {
-        LokiField,
-        FormatLoki
+        QueneroField,
+        FormatQuenero
     }
 }
 </script>
 
 <style lang="scss">
-.service-node-unlock {
+.masternode-unlock {
     user-select: none;
     .header {
         font-weight: 450;

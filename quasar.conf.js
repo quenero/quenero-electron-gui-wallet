@@ -175,9 +175,9 @@ module.exports = function (ctx) {
             builder: {
                 // https://www.electron.build/configuration/configuration
 
-                appId: "com.lokinetwork.wallet",
-                productName: "Loki Electron Wallet",
-                copyright: "Copyright © 2018-2019 Loki Project, 2018 Ryo Currency Project",
+                appId: "com.queneronetwork.wallet",
+                productName: "Quenero Electron Wallet",
+                copyright: "Copyright ©  2020 Quenero Project, 2018-2019 Loki Project, 2018 Ryo Currency Project",
 
                 // directories: {
                 //     buildResources: "src-electron/build"
@@ -195,7 +195,7 @@ module.exports = function (ctx) {
                 },
 
                 dmg: {
-                    background: "src-electron/build/loki-dmg.tiff"
+                    background: "src-electron/build/quenero-dmg.tiff"
                 },
 
                 nsis: {

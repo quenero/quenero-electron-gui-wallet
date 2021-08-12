@@ -1,23 +1,23 @@
 <template>
-<div class="service-node-registration">
+<div class="masternode-registration">
     <div class="q-pa-md">
-        <i18n path="strings.serviceNodeRegistrationDescription" tag="div" class="description q-mb-lg">
-            <b place="registerCommand">register_service_node</b>
+        <i18n path="strings.masterNodeRegistrationDescription" tag="div" class="description q-mb-lg">
+            <b place="registerCommand">register_masternode</b>
             <b place="prepareCommand">prepare_registration</b>
         </i18n>
-        <LokiField :label="$t('fieldLabels.serviceNodeCommand')" :error="$v.registration_string.$error" :disabled="registration_status.sending">
+        <QueneroField :label="$t('fieldLabels.masterNodeCommand')" :error="$v.registration_string.$error" :disabled="registration_status.sending">
             <q-input
                 v-model="registration_string"
                 type="textarea"
                 :dark="theme=='dark'"
                 @blur="$v.registration_string.$touch"
-                placeholder="register_service_node ..."
+                placeholder="register_masternode ..."
                 :disabled="registration_status.sending"
                 hide-underline
             />
-        </LokiField>
+        </QueneroField>
         <q-field class="q-pt-sm">
-            <q-btn color="primary" @click="register()" :label="$t('buttons.registerServiceNode')" :disabled="registration_status.sending"/>
+            <q-btn color="primary" @click="register()" :label="$t('buttons.registerMasternode')" :disabled="registration_status.sending"/>
         </q-field>
     </div>
 
@@ -31,14 +31,14 @@
 const objectAssignDeep = require("object-assign-deep");
 import { mapState } from "vuex"
 import { required } from "vuelidate/lib/validators"
-import LokiField from "components/loki_field"
+import QueneroField from "components/quenero_field"
 import WalletPassword from "src/mixins/wallet_password"
 
 export default {
-    name: "ServiceNodeRegistration",
+    name: "MasternodeRegistration",
     computed: mapState({
         theme: state => state.gateway.app.config.appearance.theme,
-        registration_status: state => state.gateway.service_node_status.registration,
+        registration_status: state => state.gateway.masternode_status.registration,
     }),
     data () {
         return {
@@ -82,16 +82,16 @@ export default {
                 this.$q.notify({
                     type: "negative",
                     timeout: 1000,
-                    message: this.$t("notification.errors.invalidServiceNodeCommand")
+                    message: this.$t("notification.errors.invalidMasternodeCommand")
                 })
                 return
             }
 
             this.showPasswordConfirmation({
-                title: this.$t("dialog.registerServiceNode.title"),
-                noPasswordMessage: this.$t("dialog.registerServiceNode.message"),
+                title: this.$t("dialog.registerMasternode.title"),
+                noPasswordMessage: this.$t("dialog.registerMasternode.message"),
                 ok: {
-                    label: this.$t("dialog.registerServiceNode.ok")
+                    label: this.$t("dialog.registerMasternode.ok")
                 },
             }).then(password => {
                 this.$store.commit("gateway/set_snode_status", {
@@ -101,7 +101,7 @@ export default {
                         sending: true
                     }
                 })
-                this.$gateway.send("wallet", "register_service_node", {
+                this.$gateway.send("wallet", "register_masternode", {
                     password,
                     string: this.registration_string
                 })
@@ -112,7 +112,7 @@ export default {
     },
     mixins: [WalletPassword],
     components: {
-        LokiField
+        QueneroField
     }
 }
 </script>
