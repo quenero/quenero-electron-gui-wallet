@@ -61,7 +61,7 @@ export class Backend {
             mainnet: {
                 ...daemon,
                 remote_host: "main.quenero.tech",
-                remote_port: 19090
+                remote_port: 19080
             },
             stagenet: {
                 ...daemon,
@@ -89,7 +89,7 @@ export class Backend {
                 net_type: "mainnet"
             },
             wallet: {
-                rpc_bind_port: 18082,
+                rpc_bind_port: 19091,
                 log_level: 0
             }
         }
@@ -105,7 +105,7 @@ export class Backend {
         this.remotes = [
             {
                 host: "main.quenero.tech",
-                port: "22020"
+                port: "19081"
             },
             {
                 host: "daemons.quenero.tech",

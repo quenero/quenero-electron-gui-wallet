@@ -143,7 +143,7 @@ export default {
         },
         address_placeholder (state) {
             const wallet = state.gateway.wallet.info;
-            const prefix = (wallet && wallet.address && wallet.address[0]) || "L";
+            const prefix = (wallet && wallet.address && wallet.address[0]);
             return `${prefix}..`;
         }
     }),
