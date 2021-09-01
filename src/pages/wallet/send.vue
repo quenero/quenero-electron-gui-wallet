@@ -16,12 +16,12 @@
                             :dark="theme=='dark'"
                             type="number"
                             min="0"
-                            :max="unlocked_balance / 1e12"
+                            :max="unlocked_balance / 1e9"
                             placeholder="0"
                             @blur="$v.newTx.amount.$touch"
                             hide-underline
                         />
-                        <q-btn color="secondary" @click="newTx.amount = unlocked_balance / 1e12" :text-color="theme=='dark'?'white':'dark'">
+                        <q-btn color="secondary" @click="newTx.amount = unlocked_balance / 1e9" :text-color="theme=='dark'?'white':'dark'">
                             {{ $t("buttons.all") }}
                         </q-btn>
                     </QueneroField>
@@ -263,7 +263,7 @@ export default {
                     message: this.$t("notification.errors.zeroAmount")
                 })
                 return
-            } else if(this.newTx.amount > this.unlocked_balance / 1e12) {
+            } else if(this.newTx.amount > this.unlocked_balance / 1e9) {
                 this.$q.notify({
                     type: "negative",
                     timeout: 1000,

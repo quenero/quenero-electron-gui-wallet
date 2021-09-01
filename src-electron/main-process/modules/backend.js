@@ -45,11 +45,11 @@ export class Backend {
         const daemon = {
             type: "remote",
             p2p_bind_ip: "0.0.0.0",
-            p2p_bind_port: 19080,
+            p2p_bind_port: 19990,
             rpc_bind_ip: "127.0.0.1",
-            rpc_bind_port: 19081,
+            rpc_bind_port: 19991,
             zmq_rpc_bind_ip: "127.0.0.1",
-            zmq_rpc_bind_port: 19082,
+            zmq_rpc_bind_port: 19992,
             out_peers: -1,
             in_peers: -1,
             limit_rate_up: -1,
@@ -61,21 +61,21 @@ export class Backend {
             mainnet: {
                 ...daemon,
                 remote_host: "main.quenero.tech",
-                remote_port: 19080
+                remote_port: 19991
             },
             stagenet: {
                 ...daemon,
                 type: "local",
-                p2p_bind_port: 39090,
-                rpc_bind_port: 39091,
-                zmq_rpc_bind_port: 39092
+                p2p_bind_port: 39990,
+                rpc_bind_port: 39991,
+                zmq_rpc_bind_port: 39992
             },
             testnet: {
                 ...daemon,
                 type: "local",
-                p2p_bind_port: 29090,
-                rpc_bind_port: 29091,
-                zmq_rpc_bind_port: 29092
+                p2p_bind_port: 29990,
+                rpc_bind_port: 29991,
+                zmq_rpc_bind_port: 29992
             }
         }
 
@@ -105,15 +105,15 @@ export class Backend {
         this.remotes = [
             {
                 host: "main.quenero.tech",
-                port: "19081"
+                port: "19991"
             },
             {
                 host: "daemons.quenero.tech",
-                port: "19081"
+                port: "19991"
             },
             {
                 host: "rpc.quenero.tech",
-                port: "19081"
+                port: "19991"
             }
         ]
 

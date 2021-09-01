@@ -15,12 +15,12 @@
                 :dark="theme=='dark'"
                 type="number"
                 min="0"
-                :max="unlocked_balance / 1e12"
+                :max="unlocked_balance / 1e9"
                 placeholder="0"
                 @blur="$v.masternode.amount.$touch"
                 hide-underline
             />
-            <q-btn color="secondary" @click="masternode.amount = unlocked_balance / 1e12" :text-color="theme=='dark'?'white':'dark'">
+            <q-btn color="secondary" @click="masternode.amount = unlocked_balance / 1e9" :text-color="theme=='dark'?'white':'dark'">
                 {{ $t("buttons.all") }}
             </q-btn>
         </QueneroField>
@@ -168,7 +168,7 @@ export default {
             const { unlocked_balance } = this.info;
 
             const tx = {
-                amount: unlocked_balance / 1e12,
+                amount: unlocked_balance / 1e9,
                 address: this.award_address,
                 priority: 0
             };
@@ -216,7 +216,7 @@ export default {
                     message: this.$t("notification.errors.zeroAmount")
                 })
                 return
-            } else if(this.masternode.amount > this.unlocked_balance / 1e12) {
+            } else if(this.masternode.amount > this.unlocked_balance / 1e9) {
                 this.$q.notify({
                     type: "negative",
                     timeout: 1000,
